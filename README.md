@@ -32,7 +32,7 @@ flowchart TD
 
 ---
 
-# 📂 Dataset
+#  Dataset
 
 - **Source:** HMDA 2023 (Home Mortgage Disclosure Act)
 - **Processed dataset:** `hmda_2023_processed.csv`
@@ -45,7 +45,7 @@ The processed dataset included in this repository was generated from the origina
 
 ---
 
-# 🤖 Machine Learning Models
+#  Machine Learning Models
 
 The following models were evaluated:
 
@@ -58,7 +58,7 @@ The Random Forest model achieved the best overall predictive performance and was
 
 ---
 
-# 📈 Model Evaluation
+#  Model Evaluation
 
 The models were evaluated using multiple performance metrics:
 
