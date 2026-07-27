@@ -1,4 +1,4 @@
-# 🏦 Mortgage Approval Prediction Using Machine Learning
+#  Mortgage Approval Prediction Using Machine Learning
 
 ## Overview
 
@@ -18,3 +18,19 @@ The project covers every stage of the machine learning lifecycle, including:
 - Model deployment using Streamlit
 
 The final solution is based on a Random Forest classifier that achieved excellent predictive performance while maintaining strong generalization on unseen data.
+
+##  Project Workflow
+
+```mermaid
+flowchart TD
+    A[Original HMDA Dataset]
+    A --> B[Data Cleaning & Preprocessing]
+    B --> C[Processed Dataset]
+    C --> D[Exploratory Data Analysis]
+    D --> E[Feature Engineering]
+    E --> F[Model Training]
+    F --> G[Model Comparison]
+    G --> H[Final Model Selection]
+    H --> I[Model Evaluation]
+    I --> J[Streamlit Deployment]
+```
