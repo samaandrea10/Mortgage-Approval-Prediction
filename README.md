@@ -3,6 +3,13 @@
 A complete end-to-end Machine Learning project for predicting mortgage approval decisions using the **2023 HMDA (Home Mortgage Disclosure Act)** dataset.
 
 ---
+<p align="center">
+
+## 🚀 Live Application
+
+https://mortgage-dashboard-sama.streamlit.app/
+
+</p>
 
 #  Overview
 
