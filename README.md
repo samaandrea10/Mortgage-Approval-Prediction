@@ -5,7 +5,9 @@ A complete end-to-end Machine Learning project for predicting mortgage approval 
 ---
 <p align="center">
 
-## 🚀 Live Application
+<p align="center">
+
+##  Live Application
 
 https://mortgage-dashboard-sama.streamlit.app/
 
