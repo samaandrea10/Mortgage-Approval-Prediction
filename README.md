@@ -149,11 +149,14 @@ The final Random Forest model was deployed as an interactive Streamlit web appli
 
 The application enables users to:
 
-- Enter applicant information
-- Receive an instant mortgage approval prediction
-- View financial risk indicators
-- Analyze affordability metrics
-- Generate a downloadable PDF report
+- Enter mortgage applicant information
+- Predict mortgage approval probability
+- Analyze financial health indicators
+- View detailed mortgage analytics
+- Explore interactive Data Insights dashboards
+- Review model performance metrics
+- Submit verified outcomes through the Model Feedback system
+- Generate a professional PDF report
 
 🔗 **Live Application**
 
@@ -186,12 +189,17 @@ Mortgage_Approval_Prediction.ipynb
 hmda_2023_processed.csv
 mortgage_pipeline.pkl
 model_columns.pkl
+
+app.py
+pages/
+utils/
+components/
+
 README.md
+USER_GUIDE.md
 requirements.txt
 LICENSE
 .gitignore
-ERD.png
-streamlit_app.png
 ```
 
 ---
@@ -206,6 +214,7 @@ Potential future extensions include:
 - Bias mitigation techniques
 - Cloud deployment using Docker
 - Continuous model monitoring
+ - Continuous retraining using verified user feedback
 
 ---
 
@@ -216,6 +225,19 @@ This project demonstrates the complete lifecycle of a modern Data Science soluti
 It integrates statistical analysis, supervised machine learning, model evaluation, fairness assessment, and deployment into a unified decision-support system designed for mortgage approval prediction.
 
 ---
+
+# Project Features
+
+- Interactive Streamlit Dashboard
+- Mortgage Approval Prediction
+- Financial Health Score
+- Mortgage Scenario Simulator
+- AI Mortgage Advisor
+- Model Performance Dashboard
+- Data Insights Dashboard
+- Verified Outcome Feedback
+- Professional PDF Reporting
+- 
 
 #  Author
 
