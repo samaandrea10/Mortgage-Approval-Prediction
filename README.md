@@ -53,6 +53,7 @@ The main objectives of this project are:
 - Evaluate predictive performance using standard Machine Learning metrics.
 - Deploy the final model as an interactive web application.
 - Demonstrate a complete end-to-end Data Science workflow.
+- Provide an explainable and user-friendly decision-support platform for mortgage analysis.
 
 ---
 
