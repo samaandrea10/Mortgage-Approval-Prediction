@@ -851,7 +851,7 @@ python -m streamlit run app.py
 
 ---
 
-#  Main Project Files
+# Main Project Files
 
 ```text
 mortgag-dashboard/
@@ -889,7 +889,10 @@ mortgag-dashboard/
 │   └── logo.py
 │
 └── assets/
+```
+
 ---
+
 
 #  Project Links
 
