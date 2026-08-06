@@ -224,7 +224,7 @@ Potential future extensions include:
 - Bias mitigation techniques
 - Cloud deployment using Docker
 - Continuous model monitoring
- - Continuous retraining using verified user feedback
+- Continuous retraining using verified user feedback
 
 ---
 
