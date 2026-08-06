@@ -234,6 +234,8 @@ This project demonstrates the complete lifecycle of a modern Data Science soluti
 
 It integrates statistical analysis, supervised machine learning, model evaluation, fairness assessment, and deployment into a unified decision-support system designed for mortgage approval prediction.
 
+The project further demonstrates the integration of software engineering principles with modern Machine Learning deployment practices
+
 ---
 
 # Project Features
