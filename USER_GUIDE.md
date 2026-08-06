@@ -889,8 +889,9 @@ mortgag-dashboard/
 │   └── logo.py
 │
 └── assets/
+---
 
-# 🔗 Project Links
+#  Project Links
 
 ## Live Application
 
@@ -902,7 +903,7 @@ mortgag-dashboard/
 
 ---
 
-# 🎓 Academic Context
+#  Academic Context
 
 NOVA Mortgage Intelligence was developed as a final Data Science capstone project.
 
