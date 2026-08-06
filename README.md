@@ -16,6 +16,13 @@
 https://mortgage-dashboard-sama.streamlit.app/
 ---
 
+## User Guide
+
+A comprehensive user guide describing the complete workflow of the NOVA platform—including application navigation, mortgage prediction, model performance interpretation, data insights, verified outcome feedback, PDF report generation, and troubleshooting—is available below.
+
+ **[Open the NOVA User Guide](USER_GUIDE.md)**
+ 
+
 #  Project Overview
 
 Mortgage lending is one of the most significant financial decision-making processes in the banking industry. Accurately evaluating mortgage applications requires analyzing multiple financial and demographic characteristics while balancing lending risk and responsible credit allocation.
