@@ -851,7 +851,7 @@ python -m streamlit run app.py
 
 ---
 
-# 📁 Main Project Files
+#  Main Project Files
 
 ```text
 mortgag-dashboard/
@@ -860,8 +860,10 @@ mortgag-dashboard/
 ├── README.md
 ├── USER_GUIDE.md
 ├── requirements.txt
+├── LICENSE
 ├── mortgage_pipeline.pkl
 ├── model_columns.pkl
+├── hmda_2023_processed.csv
 │
 ├── pages/
 │   ├── home.py
@@ -883,11 +885,10 @@ mortgag-dashboard/
 │   ├── session.py
 │   └── styles.py
 │
-└── components/
-    └── logo.py
-```
-
----
+├── components/
+│   └── logo.py
+│
+└── assets/
 
 # 🔗 Project Links
 
