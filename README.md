@@ -1,4 +1,6 @@
-#  Mortgage Approval Prediction Using Machine Learning
+# NOVA Mortgage Intelligence
+
+### End-to-End Machine Learning System for Mortgage Approval Prediction
 
 [![Live Application](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://mortgage-dashboard-sama.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)]
@@ -230,15 +232,18 @@ It integrates statistical analysis, supervised machine learning, model evaluatio
 
 - Interactive Streamlit Dashboard
 - Mortgage Approval Prediction
+- Approval and Decline Probability Estimation
 - Financial Health Score
+- Mortgage Affordability Analysis
 - Mortgage Scenario Simulator
 - AI Mortgage Advisor
 - Model Performance Dashboard
 - Data Insights Dashboard
 - Verified Outcome Feedback
+- Controlled Retraining Workflow
 - Professional PDF Reporting
-- 
-
+- About NOVA Project Overview
+  
 #  Author
 
 **Sama Andrea**
