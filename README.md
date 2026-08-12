@@ -2,8 +2,6 @@
 
 ### End-to-End Machine Learning System for Mortgage Approval Prediction
 
-
-
 ---
 
 # Live Application
@@ -104,10 +102,10 @@ flowchart TD
 
 **Target Variable**
 
-| Value | Meaning  |
-| ----- | -------- |
-| 1     | Approved |
-| 0     | Denied   |
+| Value | Meaning |
+| ----- | ------- |
+| 1 | Approved |
+| 0 | Denied |
 
 The processed dataset included in this repository was generated from the original HMDA dataset after cleaning, filtering irrelevant records, handling missing values, and selecting the most informative predictive features.
 
@@ -119,10 +117,10 @@ Missing numerical values were handled using **Median Imputation**, while missing
 
 The following supervised learning algorithms were evaluated:
 
-| Model               | Purpose                |
-| ------------------- | ---------------------- |
-| Logistic Regression | Baseline Classifier    |
-| Random Forest       | Final Production Model |
+| Model | Purpose |
+| ----- | ------- |
+| Logistic Regression | Baseline Classifier |
+| Random Forest | Final Production Model |
 
 Following comparative evaluation, the **Random Forest Classifier** achieved the strongest overall predictive performance and was selected for further validation, optimization, and final deployment.
 
@@ -138,9 +136,10 @@ Model performance was assessed using multiple evaluation metrics:
 - F1-Score
 - ROC-AUC
 - Precision-Recall Curve
+- Average Precision
 - Confusion Matrix
 
-The final Random Forest model achieved:
+The original Random Forest model achieved:
 
 | Metric | Score |
 | ------ | ----: |
@@ -151,29 +150,46 @@ The final Random Forest model achieved:
 | ROC-AUC | **0.9930** |
 | Average Precision | **0.9967** |
 
-These results demonstrate strong predictive performance and a high ability to distinguish between approved and denied mortgage applications.
+These results already demonstrated strong predictive performance and excellent discrimination between approved and denied mortgage applications.
+
+Following Hyperparameter Tuning, the optimized Random Forest achieved improved predictive performance.
+
+### Tuned Random Forest Performance
+
+| Metric | Score |
+| ------ | ----: |
+| Accuracy | **0.9708** |
+| Precision – Approved | **0.9854** |
+| Recall – Approved | **0.9731** |
+| F1-Score – Approved | **0.9792** |
+| Precision – Denied | **0.9369** |
+| Recall – Denied | **0.9651** |
+| F1-Score – Denied | **0.9508** |
+| ROC-AUC | **0.9950** |
+
+The tuned Random Forest therefore demonstrated the strongest overall performance and was selected as the final production model.
 
 ---
 
 # Cross Validation
 
-To evaluate model stability and reduce dependence on a single Train/Test split, **5-Fold Cross Validation** was performed on the Random Forest model.
+To evaluate model stability and reduce dependence on a single Train/Test split, **5-Fold Cross Validation** was performed on the Random Forest pipeline using the training data.
 
 The Cross Validation results were:
 
 | Fold | Accuracy |
 | ---- | -------: |
-| Fold 1 | 0.9695 |
-| Fold 2 | 0.9722 |
-| Fold 3 | 0.9699 |
-| Fold 4 | 0.9715 |
-| Fold 5 | 0.9699 |
+| Fold 1 | 0.9705 |
+| Fold 2 | 0.9679 |
+| Fold 3 | 0.9710 |
+| Fold 4 | 0.9706 |
+| Fold 5 | 0.9684 |
 
-**Mean Accuracy:** **0.9706 (97.06%)**
+**Mean Accuracy:** **0.9697 (96.97%)**
 
-**Standard Deviation:** **0.0011**
+**Standard Deviation:** **0.0013**
 
-The consistently high performance across all five folds, together with the low standard deviation, indicates that the model demonstrates strong stability and generalization capability across different data partitions.
+The consistently high performance across all five folds, together with the low standard deviation, indicates strong model stability across different data partitions and limited sensitivity to any single Train/Test split.
 
 ---
 
@@ -181,14 +197,35 @@ The consistently high performance across all five folds, together with the low s
 
 Following the initial model comparison, **Random Forest** was selected as the most promising model for further development.
 
-A Hyperparameter Tuning process was performed using **GridSearchCV** to evaluate multiple combinations of Random Forest parameters, including:
+Hyperparameter Tuning was performed using **RandomizedSearchCV**, which efficiently evaluates multiple combinations of Random Forest hyperparameters while reducing computational cost compared with exhaustive Grid Search.
 
-- `n_estimators`: 50, 100, 200
-- `max_depth`: 10, 20, None
+The optimization process evaluated several Random Forest hyperparameters, including:
 
-The tuning process was designed to identify a configuration that maintained strong predictive performance while improving model robustness and generalization.
+- `n_estimators`
+- `max_depth`
+- `min_samples_split`
+- `min_samples_leaf`
+- `max_features`
+- `class_weight`
 
-Following Hyperparameter Tuning and model validation, the tuned Random Forest model was selected as the final predictive model integrated into NOVA.
+The best configuration identified during the optimization process included:
+
+```text
+n_estimators = 300
+max_depth = 20
+min_samples_split = 10
+min_samples_leaf = 1
+max_features = None
+class_weight = None
+```
+
+The best Cross Validation score obtained during the RandomizedSearchCV optimization process was approximately:
+
+```text
+0.9666
+```
+
+Following Hyperparameter Tuning and final evaluation, the optimized Random Forest model was selected as the final predictive model integrated into NOVA.
 
 ---
 
@@ -239,7 +276,7 @@ External Validation provides an additional layer of confidence in the robustness
 
 # Streamlit Application
 
-The final Random Forest model was deployed as an interactive Streamlit web application through the **NOVA Mortgage Intelligence** platform.
+The final optimized Random Forest model was deployed as an interactive Streamlit web application through the **NOVA Mortgage Intelligence** platform.
 
 The application enables users to:
 
@@ -342,7 +379,7 @@ Potential future extensions include:
 
 This project demonstrates the complete lifecycle of a modern Data Science solution—from raw data preprocessing and predictive modeling to model validation, optimization, and deployment within an interactive web application.
 
-It integrates statistical analysis, supervised Machine Learning, model evaluation, 5-Fold Cross Validation, Hyperparameter Tuning, Feature Importance, fairness assessment, External Validation, and deployment into a unified decision-support system designed for mortgage approval prediction.
+It integrates statistical analysis, supervised Machine Learning, model evaluation, 5-Fold Cross Validation, Hyperparameter Tuning using RandomizedSearchCV, Feature Importance, fairness assessment, External Validation, and deployment into a unified decision-support system designed for mortgage approval prediction.
 
 The project further demonstrates the integration of Data Science and software engineering principles with modern Machine Learning deployment practices.
 
@@ -365,7 +402,7 @@ NOVA illustrates how a Machine Learning model can be transformed from an experim
 - Feature Importance Analysis
 - Fairness Analysis
 - 5-Fold Cross Validation
-- Hyperparameter Tuning
+- Hyperparameter Tuning using RandomizedSearchCV
 - External Validation
 - Verified Outcome Feedback
 - Professional PDF Reporting
