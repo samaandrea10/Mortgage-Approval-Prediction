@@ -534,43 +534,9 @@ This page provides a concise overview of how the project combines Data Science, 
 
 The Model Performance page presents the scientific evaluation of the final **Tuned Random Forest** model.
 
-The final production model was selected after model comparison, 5-Fold Cross Validation, Hyperparameter Tuning, and final evaluation on the held-out Test Set.
-
----
-
-## Final Production Model
-
-The final model deployed in NOVA is the **Tuned Random Forest Classifier**.
-
-Hyperparameter Tuning was performed using **RandomizedSearchCV**, which efficiently evaluates multiple combinations of Random Forest hyperparameters while reducing computational cost compared with exhaustive Grid Search.
-
-The optimization process evaluated several Random Forest hyperparameters, including:
-
-- `n_estimators`
-- `max_depth`
-- `min_samples_split`
-- `min_samples_leaf`
-- `max_features`
-- `class_weight`
-
-The best configuration identified during the optimization process included:
-
-```text
-n_estimators = 300
-max_depth = 20
-min_samples_split = 10
-min_samples_leaf = 1
-max_features = None
-class_weight = None
-```
-
-Following Hyperparameter Tuning and final evaluation, the optimized Random Forest model was selected as the final production model integrated into NOVA.
-
----
+The final model was selected after model comparison, **5-Fold Cross Validation**, Hyperparameter Tuning using **RandomizedSearchCV**, and final evaluation on the held-out Test Set.
 
 ## Final Model Performance
-
-The Tuned Random Forest achieved the following performance on the held-out Test Set:
 
 | Metric | Score |
 |---|---:|
@@ -583,156 +549,36 @@ The Tuned Random Forest achieved the following performance on the held-out Test 
 | F1-Score – Denied | **0.9508** |
 | ROC-AUC | **0.9950** |
 
-These results demonstrate strong predictive performance and an excellent ability to distinguish between approved and denied mortgage applications.
+These results indicate strong predictive performance and excellent ability to distinguish between approved and denied mortgage applications.
 
----
+## Cross Validation
 
-## Accuracy
+A **5-Fold Cross Validation** procedure was used to evaluate model stability.
 
-Accuracy represents the percentage of all testing observations classified correctly.
+- **Mean Accuracy:** 96.97%
+- **Standard Deviation:** 0.0013
 
-The final Tuned Random Forest achieved:
+The low variation between folds indicates stable performance across different data partitions.
 
-```text
-Accuracy = 97.08%
-```
+## Hyperparameter Tuning
 
----
+Hyperparameter Tuning was performed using **RandomizedSearchCV** to efficiently evaluate multiple Random Forest configurations.
 
-## Precision — Denied
-
-Among applications predicted as denied, the proportion that were actually denied.
-
-The final model achieved:
-
-```text
-Precision – Denied = 0.9369
-```
-
-High denied-class Precision means that relatively few applications predicted as denied were actually approved.
-
----
-
-## Recall — Denied
-
-Among applications that were actually denied, the proportion correctly identified by the model.
-
-The final model achieved:
-
-```text
-Recall – Denied = 0.9651
-```
-
-This is particularly important because denied applications represent the more difficult and financially sensitive class.
-
----
-
-## F1-Score — Denied
-
-F1-Score combines Precision and Recall into a single measure.
-
-The final model achieved:
-
-```text
-F1-Score – Denied = 0.9508
-```
-
-This indicates a strong balance between identifying denied applications and avoiding incorrect decline predictions.
-
----
-
-## ROC-AUC
-
-ROC-AUC measures the ability of the model to distinguish between approved and denied applications across different probability thresholds.
-
-The final Tuned Random Forest achieved:
-
-```text
-ROC-AUC = 0.9950
-```
-
-General interpretation:
-
-| ROC-AUC | General Interpretation |
-|---:|---|
-| 0.50 | No discrimination |
-| 0.60–0.70 | Limited |
-| 0.70–0.80 | Acceptable |
-| 0.80–0.90 | Strong |
-| Above 0.90 | Excellent |
-
-A ROC-AUC of **0.9950** indicates excellent class-discrimination capability.
-
----
-
-## 5-Fold Cross Validation
-
-To evaluate model stability and reduce dependence on a single Train/Test split, **5-Fold Cross Validation** was performed on the Random Forest pipeline using the training data.
-
-The Cross Validation results were:
-
-| Fold | Accuracy |
-|---|---:|
-| Fold 1 | 0.9705 |
-| Fold 2 | 0.9679 |
-| Fold 3 | 0.9710 |
-| Fold 4 | 0.9706 |
-| Fold 5 | 0.9684 |
-
-Cross Validation summary:
-
-```text
-Mean Accuracy = 0.9697 (96.97%)
-Standard Deviation = 0.0013
-```
-
-The consistently high performance across all five folds, together with the low standard deviation, indicates strong model stability across different data partitions.
-
----
-
-## Confusion Matrix
-
-The confusion matrix presents:
-
-| Outcome | Meaning |
-|---|---|
-| True Denied | Correctly identified denial |
-| True Approved | Correctly identified approval |
-| False Approved | Denied case predicted as approved |
-| False Denied | Approved case predicted as denied |
-
-This visualization provides a clearer understanding of the model's classification errors and its ability to correctly identify both mortgage approval outcomes.
-
----
+The optimized model was selected as the final production model deployed within NOVA.
 
 ## Model Comparison
 
-The project evaluated:
+The project compared:
 
 - Logistic Regression
 - Original Random Forest
 - Tuned Random Forest
 
-Logistic Regression served as the baseline classification model.
-
-The Original Random Forest demonstrated strong predictive performance and was therefore selected for further optimization.
-
-Following **RandomizedSearchCV Hyperparameter Tuning**, the Tuned Random Forest improved the overall model performance and achieved:
-
-```text
-Accuracy = 97.08%
-ROC-AUC = 0.9950
-```
-
-The **Tuned Random Forest** was therefore selected as the final production model deployed within NOVA.
-
----
+The **Tuned Random Forest achieved the strongest overall balance of predictive performance and was selected as the final production model deployed within NOVA.**
 
 ## Feature Importance
 
-The Feature Importance chart presents the variables with the strongest predictive influence.
-
-Examples may include:
+The Feature Importance chart highlights variables with strong predictive influence, including:
 
 - Interest Rate
 - Debt-to-Income Ratio
@@ -741,8 +587,327 @@ Examples may include:
 - Loan-to-Value Ratio
 - Property Value
 
-Feature Importance indicates predictive contribution.
-
-It does not prove that a variable directly causes approval or denial.
+Feature Importance represents predictive contribution and does not establish causation.
 
 ---
+
+# Model Feedback
+
+The Model Feedback page enables the recording of a verified real-world mortgage outcome after the actual decision becomes known.
+
+The user can:
+
+1. Select the verified actual outcome.
+2. Add an optional note.
+3. Submit the feedback.
+4. Compare the verified outcome with the previous model prediction.
+
+The feedback record may include:
+
+- Timestamp.
+- Predicted class.
+- Predicted probability.
+- Actual verified outcome.
+- Whether the prediction was correct.
+- Relevant application characteristics.
+
+The purpose of this feature is to support model monitoring and provide a structured foundation for future controlled retraining.
+
+---
+
+# Controlled Model Retraining
+
+NOVA does **not** automatically retrain the production model after every feedback submission.
+
+This is intentional.
+
+Automatic retraining based on individual observations may introduce:
+
+- Noise.
+- Incorrect labels.
+- Bias.
+- Model instability.
+- Performance degradation.
+
+A safer Machine Learning lifecycle is:
+
+```text
+Prediction
+   ↓
+Verified Outcome
+   ↓
+Feedback Storage
+   ↓
+Quality Review
+   ↓
+Batch Accumulation
+   ↓
+Controlled Retraining
+   ↓
+Validation
+   ↓
+Production Deployment
+```
+
+Future retraining should occur only after sufficient verified observations have been collected and the updated model has passed formal evaluation.
+
+---
+
+# PDF Report
+
+NOVA can generate a professional PDF report summarizing the mortgage analysis.
+
+The report may include:
+
+- Predicted decision.
+- Approval and decline probabilities.
+- Risk level.
+- Financial Health Score.
+- Mortgage summary.
+- Applicant information.
+- Financial ratios.
+- Estimated monthly payment.
+- Total estimated interest.
+- Affordability indicators.
+- Risk observations.
+- Recommendations.
+- Model explanation.
+- Responsible-use disclaimer.
+
+The report is generated dynamically using the current application data.
+
+---
+
+# Responsible Use
+
+NOVA is designed for educational and academic decision support.
+
+The system should **not** be used as the sole basis for a real mortgage decision.
+
+Real-world mortgage underwriting may require additional information such as:
+
+- Credit history.
+- Employment verification.
+- Assets.
+- Existing liabilities.
+- Property appraisal.
+- Regulatory requirements.
+- Documentation verification.
+- Lender-specific policies.
+
+The system therefore provides analytical support rather than an official lending decision.
+
+---
+
+# Troubleshooting
+
+## Application Is Loading Slowly
+
+Streamlit Community Cloud may place inactive applications into a sleep state.
+
+Wait briefly and refresh the page.
+
+---
+
+## Prediction Does Not Appear
+
+Check that all required fields contain valid values.
+
+Pay particular attention to:
+
+- Loan amount.
+- Income.
+- Property value.
+- Interest rate.
+- DTI.
+- LTV.
+
+---
+
+## Input Validation Warning Appears
+
+NOVA validates financial inputs before prediction.
+
+If an unrealistic or invalid value is entered, the application may display a warning or prevent the analysis from continuing.
+
+Correct the highlighted value and submit the application again.
+
+---
+
+## PDF Report Does Not Download
+
+Make sure a mortgage analysis has already been completed.
+
+The PDF report is generated from the current prediction and financial-analysis data.
+
+---
+
+## Feedback Cannot Be Submitted
+
+A prediction must exist before a verified outcome can be associated with it.
+
+Complete a mortgage analysis first, then open the Model Feedback page.
+
+---
+
+# Local Installation
+
+The project can also be executed locally.
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/samaandrea10/mortgag-dashboard.git
+```
+
+## Navigate to the Project
+
+```bash
+cd mortgag-dashboard
+```
+
+## Create a Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+## Activate the Environment
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+### macOS / Linux
+
+```bash
+source .venv/bin/activate
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run NOVA
+
+```bash
+streamlit run app.py
+```
+
+The application should open in the default browser.
+
+---
+
+# Project Files
+
+Important files may include:
+
+```text
+app.py
+mortgage_pipeline.pkl
+model_columns.pkl
+hmda_2023_processed.csv
+requirements.txt
+README.md
+USER_GUIDE.md
+
+components/
+pages/
+utils/
+assets/
+```
+
+The exact repository structure may evolve as the project is improved.
+
+---
+
+# Technologies
+
+NOVA was developed using:
+
+- Python
+- Pandas
+- NumPy
+- Scikit-Learn
+- Matplotlib
+- Plotly
+- Joblib
+- Streamlit
+- ReportLab
+- Google Colab
+- Visual Studio Code
+- Git
+- GitHub
+- Streamlit Community Cloud
+
+---
+
+# Academic Context
+
+NOVA Mortgage Intelligence was developed as a **Final Capstone Project in Information Systems with a Data Science specialization**.
+
+The project demonstrates the complete lifecycle of a modern Machine Learning system:
+
+```text
+Data
+  ↓
+Preprocessing
+  ↓
+Exploratory Data Analysis
+  ↓
+Feature Engineering
+  ↓
+Model Development
+  ↓
+Model Comparison
+  ↓
+5-Fold Cross Validation
+  ↓
+RandomizedSearchCV Hyperparameter Tuning
+  ↓
+Final Model Evaluation
+  ↓
+Fairness Analysis
+  ↓
+External Validation
+  ↓
+Deployment
+  ↓
+Monitoring
+  ↓
+Verified Feedback
+```
+
+The project integrates Data Science, Machine Learning, software engineering, interactive visualization, model monitoring, and responsible deployment within a unified decision-support platform.
+
+---
+
+# Important Notice
+
+NOVA is an academic and educational project.
+
+Predictions generated by the system should not be interpreted as financial advice or as a replacement for professional lending decisions.
+
+Real-world mortgage approval requires additional regulatory, legal, financial, and risk-assessment considerations beyond the scope of this academic project.
+
+---
+
+# Author
+
+**Sama Andrea**
+
+**B.Sc. Information Systems**
+
+**Data Science Specialization**
+
+**Final Capstone Project**
+
+---
+
+# NOVA Mortgage Intelligence
+
+### From Data to Decisions You Can Trust
