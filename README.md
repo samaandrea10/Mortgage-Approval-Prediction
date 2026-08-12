@@ -3,9 +3,6 @@
 ### End-to-End Machine Learning System for Mortgage Approval Prediction
 
 
-[]
-[]
-[]
 
 ---
 
